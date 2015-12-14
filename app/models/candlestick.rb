@@ -19,6 +19,6 @@ class Candlestick
   end
 end
 
-day = Candlestick.new({:last=>1.5138, :open=>1.5142, :high=>1.5133, :low=>1.0984})
+day = Candlestick.new({:last=>1, :open=>2, :high=>0.5, :low=>0.5})
 day.type_of_candlestick
 binding.pry

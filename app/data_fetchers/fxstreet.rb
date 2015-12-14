@@ -31,7 +31,7 @@ class FXStreetScraper
       id = price.attribute("id").value
       type = id.scan(/^(\w+)_/).flatten.first
       value = price.text.to_f
-      prices_hash[type] = value
+      prices_hash[type.to_sym] = value
     end
     prices_hash
 
