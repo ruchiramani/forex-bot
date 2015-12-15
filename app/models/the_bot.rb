@@ -4,8 +4,8 @@ class TheBot
 
 attr_reader :candlesticks
 
- def initialize(candlesticks)
-   @candlesticks =  candlesticks
+ def initialize
+   @candlesticks
  end
 
  def decide
