@@ -3,8 +3,8 @@ class TheBot
 
 attr_reader :candlesticks
 
- def initialize(candlesticks)
-   @candlesticks =  candlesticks
+ def initialize
+   @candlesticks = []
  end
 
  def decide
@@ -20,6 +20,12 @@ attr_reader :candlesticks
     "buy" # tell API to buy
   end
 
+  def push_candlestick(candlestick)
+        @candlesticks << candlestick
+        if @candlesticks.length > 3
+         @candlesticks.shift
+        end
+    end
 end
 
 binding.pry

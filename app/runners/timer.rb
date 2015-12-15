@@ -4,9 +4,10 @@ class Timer
 
  @@sleep = 5
 
- attr_reader :trading_time
+ attr_reader :trading_time :bot
 
  def initialize(trading_time,bot)
+   @bot = bot
    t = Time.now
    t = t - t.sec
    t = t - (t.min*60)
@@ -33,7 +34,7 @@ class Timer
 
  def act
    puts "waking up the bot..."
-   bot.decide
+   @bot.decide
  end
 
 end
