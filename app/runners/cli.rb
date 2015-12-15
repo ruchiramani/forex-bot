@@ -4,6 +4,7 @@ require_relative 'timer'
 require_relative '../models/the_bot'
 require_relative '../models/candlestick'
 require_relative '../data_fetchers/fxstreet'
+require_relative 'io'
 
 
 def quit
@@ -47,6 +48,7 @@ end
 
 def runner
 
+  params_file = "params.yml"
   message
   scraper = FXStreetScraper.new
   time = 0
@@ -65,13 +67,20 @@ def runner
       print_rates(scraper.rates_now)
     when "daemon"
       puts "Starting daemon"
-      `ruby daemon.rb > log`
+      system("ruby daemon.rb >> log &")
+    when "log"
+      puts `tail log`
     when "time"
       puts "Current trading time is set at #{time}"
+      puts "Set new time:"
       time =  get_time
+      f = ForexIO.new(params_file)
+      p = f.read
+      p[:trading_time] = time
+      f.write(p)
     else
       puts "invalid command!"
-      help
+      message
     end
   end
 
