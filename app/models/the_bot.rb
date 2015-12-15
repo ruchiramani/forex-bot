@@ -8,7 +8,16 @@ attr_reader :candlesticks
  end
 
  def decide
-   buy if candlesticks_pattern
+  if candlesticks_pattern
+    puts "The time is:"
+    puts Time.now
+    puts "sending buy instruction to broker..."
+     buy
+  else
+    puts "The time is:"
+    puts Time.now
+    puts "not buying today..."
+  end
  end
 
   def candlesticks_pattern
@@ -25,7 +34,13 @@ attr_reader :candlesticks
         if @candlesticks.length > 3
          @candlesticks.shift
         end
-    end
+  end
+
+  def pull_candlestick(scraper)
+      type = Candlestick.new(scraper.rates_now).type
+      push_candlestick(type)
+  end
+
 end
 
-binding.pry
+#binding.pry

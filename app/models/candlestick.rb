@@ -12,13 +12,13 @@ class Candlestick
   @low = rates_hash[:low]
  end
 
-  def type_of_candlestick
+  def type
     return :bear if open > last && (high*open) < (open*last) && (low*last) < (open*last)
     return :bull if open < last && (high*last) < (open*last) && (low*open) < (open*last)
     return :indecisive
   end
 end
 
-day = Candlestick.new({:last=>1, :open=>2, :high=>0.5, :low=>0.5})
-day.type_of_candlestick
-binding.pry
+#day = Candlestick.new({:last=>1, :open=>2, :high=>0.5, :low=>0.5})
+#day.type_of_candlestick
+#binding.pry

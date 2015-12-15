@@ -40,4 +40,4 @@ class FXStreetScraper
 end
 
 
-binding.pry
+#binding.pry
